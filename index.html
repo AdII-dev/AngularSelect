@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <title>Booking</title>
+</head>
+<body>
+    <div ng-app = "HotelApp" ng-controller="HotelController">
+        <h1>Szálloda foglalás</h1>
+        <ul>
+            <li ng-repeat="room in rooms" ng-click="reserveRoom(room)">
+                {{room.szam}} - {{room.tipus}}
+            </li>
+        </ul>
+        <h2>Kiválasztott szoba:</h2>
+        <p ng-if="selectedRoom">{{selectedRoom.szam}} {{selectedRoom.tipus}}</p>
+
+
+    </div>
+
+    <script>
+        let app = angular.module("HotelApp", []);
+        app.controller("HotelController", function($scope){
+        $scope.tittle = "Szállodai foglalás"
+        $scope.rooms =[
+            {szam: '101', tipus: 'Egyágyas'},
+            {szam: '102', tipus: 'Kétágyas'},
+            {szam: '103', tipus: 'Lakosztály'},
+        ];
+        //Szoba kiválasztása
+        $scope.reserveRoom = function(room){
+            $scope.selectedRoom = room;
+        }
+        })
+
+
+    </script>
+    
+</body>
+</html>
